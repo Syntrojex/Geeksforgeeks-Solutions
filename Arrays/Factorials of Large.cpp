@@ -1,36 +1,40 @@
 class Solution {
-public:
-
-    vector<int> factorial(int n)
-    {
-        vector<int> result = {1};
-
-        for (int i = 2; i <= n; i++)
-        {
-            int carry = 0;
-
-            for (int j = 0; j < result.size(); j++)
-            {
-                int product = result[j] * i + carry;
-
-                result[j] = product % 10;
-
-                carry = product / 10;
-            }
-
-            while (carry > 0)
-            {
-                result.push_back(carry % 10);
-
-                carry /= 10;
-            }
-        }
-
-        reverse(result.begin(), result.end());
-
-        return result;
-    }
+	public:
+	
+	vector<int> factorial(int n)
+	{
+		vector<int> ans(1, 1);
+		
+		while (n>1)
+			{
+			
+			int carry = 0;
+			int product;
+			int size = ans.size();
+			
+			for (int i = 0; i<size; i++)
+				{
+				product = ans[i]*n + carry;
+				
+				ans[i] = product%10;
+				
+				carry = product/10;
+			}
+			
+			while (carry)
+				{
+				ans.push_back(carry%10);
+				carry /= 10;
+			}
+			
+			n--;
+		}
+		
+		reverse(ans.begin(), ans.end());
+		return ans;
+	}
 };
+
 
 
 /*
